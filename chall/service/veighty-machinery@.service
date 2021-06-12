@@ -1,0 +1,14 @@
+[Unit]
+Description=FAUST CTF veighty-machinery service
+
+[Service]
+ExecStart=-/srv/veighty-machinery/veighty-machinery
+WorkingDirectory=/srv/veighty-machinery
+StandardInput=socket
+StandardOutput=socket
+User=veighty-machinery
+LimitNPROC=200
+LimitCPU=30
+
+Restart=on-failure
+PrivateTmp=true

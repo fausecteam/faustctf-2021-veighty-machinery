@@ -1,0 +1,28 @@
+# Human-readable name of the service
+name: Veighty Machinery
+# Name of the service for usage in paths, usernames etc.: Should only consist of lowercase alphanumeric
+# characters, must be identical to the (URL) project name of the GitLab repo
+slug: veighty-machinery
+authors:
+  - fabiano <fabian.fleischer@fau.de>
+
+install:
+  debian_packages:
+    - bindfs
+  # These will be run on the Vulnbox after extracting "dist_root" (from the build) to the root file system,
+  # installing Debian packages and creating the service user
+  postinst_commands:
+    - chattr +a /srv/veighty-machinery/data
+    - systemctl enable veighty-machinery.socket
+  # Whether to insert a firewall rule not allowing the service user to establish outgoing network connections
+  # This should generally be enabled, except for services which need outgoing connections
+  prevent_outgoing_connections: True
+
+checker:
+  script_path: checker/checker.py
+  max_duration: 80
+  debian_packages:
+    - libssl-dev
+  pip_packages:
+    - pwntools
+    - pycparser

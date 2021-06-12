@@ -1,0 +1,13 @@
+[Unit]
+Description=FAUST CTF veighty-machinery service
+Requires=srv-veighty\x2dmachinery-data.mount
+After=srv-veighty\x2dmachinery-data.mount
+
+[Socket]
+ListenStream=7777
+Accept=true
+MaxConnections=150
+NoDelay=true
+
+[Install]
+WantedBy=sockets.target

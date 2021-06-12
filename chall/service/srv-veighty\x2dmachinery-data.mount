@@ -1,0 +1,8 @@
+[Unit]
+Description=FAUST CTF veighty-machinery data mount
+
+[Mount]
+What=/srv/veighty-machinery/data
+Where=/srv/veighty-machinery/data
+Type=fuse.bindfs
+Options=force-user=root,perms=u=rwD:g=r:dg=rwx:o=D
